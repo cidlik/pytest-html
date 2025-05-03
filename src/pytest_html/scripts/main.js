@@ -11,6 +11,8 @@ const {
     possibleFilters,
 } = require('./storage.js')
 
+const ClipboardJS = require('clipboard/dist/clipboard.min')
+
 const removeChildren = (node) => {
     while (node.firstChild) {
         node.removeChild(node.firstChild)
@@ -136,6 +138,19 @@ const bindEvents = () => {
     })
 }
 
+const copyButtonHandler = () => {
+    const clipboard = new ClipboardJS('.copy_button')
+
+    // TODO: Add tooltips [1]
+    // [1] https://stackoverflow.com/questions/37381640/tooltips-highlight-animation-with-clipboard-js-click/37395225
+    clipboard.on('success', function(e) {
+        return
+    })
+    clipboard.on('error', function(e) {
+        return
+    })
+}
+
 const redraw = () => {
     const { testSubset } = manager
 
@@ -147,4 +162,5 @@ module.exports = {
     redraw,
     bindEvents,
     renderStatic,
+    copyButtonHandler,
 }

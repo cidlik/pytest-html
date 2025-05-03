@@ -133,6 +133,20 @@ class ReportData:
         if report.when == "teardown":
             self.append_teardown_log(report)
 
+        for i, row in enumerate(test_data["resultsTableRow"]):
+            test_name = test_data["testId"]
+            if not row.startswith(f'<td class="col-testId">{test_name}'):
+                continue
+            row = (
+                f'{row.replace("</td>", "")}'
+                f'<button class="copy_button" data-clipboard-text="{test_name}">'
+                "(copy)"
+                "</button>"
+                "</td>"
+            )
+            test_data["resultsTableRow"][i] = row
+            break
+
         # passed "setup" and "teardown" are not added to the html
         if report.when in ["call", "collect"] or (
             report.when in ["setup", "teardown"] and report.outcome != "passed"

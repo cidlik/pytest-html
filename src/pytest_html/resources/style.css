@@ -317,3 +317,17 @@ div.media {
 .filter__label {
   margin-right: 10px;
 }
+
+.copy_button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  color: #aaa;
+}
+
+.copy_button:hover {
+  color: #ccc;
+}
